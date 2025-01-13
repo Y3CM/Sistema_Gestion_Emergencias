@@ -38,7 +38,7 @@ public class App {
                     break;
                 
                 case 4:
-                System.out.println("Opción de recursos aún no implementada.");
+                System.out.println("Opción de recursos aún no implementada.");// hacien pruebas de la rama de la funcionalidad de recursos.
                     break;
 
                 default:
