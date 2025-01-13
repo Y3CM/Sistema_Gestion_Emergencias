@@ -97,12 +97,13 @@ public class RegistroEmergencias {
         } */
         System.out.println("Tiempo de respuesta estimado (minutos): ");
       int tiempo = scan.nextInt();
+      scan.nextLine();
       return tiempo;
     }
 
     public String ubicacion(){
         System.out.println("Ubicacion de la emergencia: ");
-        String ubicacion = scan.next();
+        String ubicacion = scan.nextLine();
         return ubicacion;
     }
 
