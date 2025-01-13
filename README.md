@@ -1,7 +1,7 @@
 ## App
 
 Es un programa que permite gestionar diferentes tipos de emergencias, asignar recursos según la prioridad y evaluar el rendimiento del sistema. 
-A través de esta actividad, los estudiantes practicarán habilidades avanzadas de diseño y programación, mientras comprenden la resolución de problemas en sistemas críticos.
+A través de esta actividad, se practicarán habilidades avanzadas de diseño y programación, mientras se comprende la resolución de problemas en sistemas críticos.
 
 
 ## Folder Structure
