@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import dependencias.*;
+
 public class App {
     public static void main(String[] args) throws Exception {
         boolean salir = false;
@@ -17,9 +19,7 @@ public class App {
             System.out.println("4. Recursos");
             System.out.println("0. Terminar Jornada");
 
-            int opcion = scan.nextInt();
-            scan.nextLine();
-            switch (opcion) {
+            switch (getOpcion(scan)) {
                 case 0:
                     System.out.println("Terminando jornada...");
                     salir = true;
@@ -34,7 +34,7 @@ public class App {
                     break;
 
                 case 3:
-                    
+                    registro.atenderEmergencia();
                     break;
                 
                 case 4:
@@ -47,7 +47,19 @@ public class App {
             pressEnter(scan);
         } while (!salir);
 
-        scan.close(); // Cerramos el Scanner al terminar
+        scan.close(); 
+    }
+
+       //metodo para controlar lo que el usuario inserta
+    private static int getOpcion(Scanner scan) {
+        while (true) {
+            try {
+                System.out.print("Selecciona una opción: ");
+                return Integer.parseInt(scan.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada no válida. Por favor, introduce un número.");
+            }
+        }
     }
 
     public static void pressEnter(Scanner scan) {

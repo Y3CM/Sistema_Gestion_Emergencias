@@ -1,14 +1,17 @@
+package services;
 import interfaces.Responder;
+import dependencias.*;
 import enums.NivelGravedad;
 
-public class Ambulancia extends Emergencia implements Responder {
+public class Bomberos extends Recursos implements Responder {
 
-  private int paramedicos;
+    private int camion;
+    
+ public Bomberos(String id, String location, int camion) {
+        super(id, location);
+        this.camion = camion;
+    }
 
-  public Ambulancia(String tipo,NivelGravedad nivelGravedad, int tiempoRespuesta, String ubicacion){
-    super(tipo,nivelGravedad,tiempoRespuesta,ubicacion);
-  }
-  
     @Override
     public void atenderEmergencia() {
         // TODO Auto-generated method stub
@@ -20,5 +23,18 @@ public class Ambulancia extends Emergencia implements Responder {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'evaluarEstado'");
     }
+
+  @Override
+    public String getTipo() {
+        return "Bomberos";
+    }
+
+public int getCamion() {
+    return camion;
+}
+
+public void setCamion(int camion) {
+    this.camion = camion;
+}
 
 }

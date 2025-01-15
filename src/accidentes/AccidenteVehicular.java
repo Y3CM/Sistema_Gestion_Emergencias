@@ -1,3 +1,4 @@
+package accidentes;
 import interfaces.Emergencias; 
 
 public class AccidenteVehicular implements Emergencias{

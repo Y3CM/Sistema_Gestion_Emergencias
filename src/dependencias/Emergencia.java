@@ -1,3 +1,4 @@
+package dependencias;
 import enums.NivelGravedad;
 
 public class Emergencia {
@@ -17,7 +18,7 @@ public Emergencia(String tipo,NivelGravedad nivelGravedad, int tiempoRespuesta, 
     this.tiempoRespuesta = tiempoRespuesta;
     this.ubicacion = ubicacion;
 }
-public int getTiempoRespuesta() {
+public int getTiempoRespuesta() { 
     return tiempoRespuesta;
 }
 
@@ -35,7 +36,6 @@ public void setUbicacion(String ubicacion) {
    
 
 public void showEmergencia(){
-    System.out.println("-----------------------------------------");
     System.out.println("Detalles de la emergencia");
     System.out.println("-----------------------------------------");
     System.out.println("Tipo de emergencia: " + tipo);
