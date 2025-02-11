@@ -1,9 +1,15 @@
 package dependencias;
 
-public abstract class Recursos {
+import factory.RecursosFactory;
+
+public abstract class Recursos{
     private String id;
     private String ubicacion;
     private boolean disponible;
+
+    public Recursos(){
+
+    }
 
     public Recursos(String id, String ubicacion) {
         this.id = id;
@@ -40,5 +46,18 @@ public abstract class Recursos {
         return "Recurso: " + id + " | Tipo: " + getTipo() + " | Ubicación: " + ubicacion + " | Disponible: "
                 + disponible;
     }
+
+    @Override
+    public String toString() {
+        String disp;
+        if (disponible){
+             disp =  "Disponible";
+        }else{
+             disp =  "No disponible";
+        }
+        return "id= " + id + ", ubicacion= " + ubicacion + ", disponible= " + disp;
+    }
+
+
 }
 

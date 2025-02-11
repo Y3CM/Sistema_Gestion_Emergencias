@@ -1,12 +1,14 @@
 import java.util.Scanner;
 
 import dependencias.*;
+import factory.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
         boolean salir = false;
         Scanner scan = new Scanner(System.in);
         RegistroEmergencias registro = new RegistroEmergencias(); // Instancia única de RegistroEmergencias
+       
 
         do {
             System.out.println("*-*-*-*-*-*-*--*-*--*-*-*-*--*-*-*-*-*-*-*");
@@ -38,7 +40,7 @@ public class App {
                     break;
                 
                 case 4:
-                System.out.println("Opción de recursos aún no implementada.");// hacien pruebas de la rama de la funcionalidad de recursos.
+                       RecursosFactory.showRecursos();
                     break;
 
                 default:

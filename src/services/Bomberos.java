@@ -37,4 +37,9 @@ public void setCamion(int camion) {
     this.camion = camion;
 }
 
+@Override
+public String toString() {
+    return "Bomberos: " + super.toString() + " ,camion= " + camion;
+}
+
 }

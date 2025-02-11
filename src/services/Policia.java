@@ -43,6 +43,13 @@ public class Policia extends Recursos implements Responder{
         this.patrullas = patrullas;
     }
 
+
+
+    @Override
+    public String toString() {
+        return "Policia: "+ super.toString() +" ,patrullas= " + patrullas;
+    }
+
  
 
 }

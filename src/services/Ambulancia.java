@@ -56,5 +56,14 @@ public class Ambulancia extends Recursos implements Responder, CalcularRecursos 
     public void setParamedicos(int paramedicos) {
         this.paramedicos = paramedicos;
     }
+
+
+
+    @Override
+    public String toString() {
+        return "Ambulancia "+ super.toString() +" ,paramedicos= " + paramedicos ;
+    }
+
+    
 }
 
