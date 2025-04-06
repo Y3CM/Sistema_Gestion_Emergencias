@@ -10,10 +10,10 @@ import dependencias.*;
 public class RecursosFactory {
     private static List<Recursos> recursos;
 
-    // Inicialización estática: los recursos se crean al inicio de la aplicación
+    // los recursos se crean al inicio de la aplicación
     static {
         recursos = new ArrayList<>();
-        // Crear recursos predefinidos
+        // Crear recursos 
         recursos.add(new Ambulancia("AMB-001", "Hospital Central", 2));
         recursos.add(new Ambulancia("AMB-002", "Hospital Norte", 3));
         recursos.add(new Ambulancia("AMB-003", "Hospital Sur", 3));
@@ -45,7 +45,15 @@ public class RecursosFactory {
 
     public static void showRecursos() {
         for (Recursos recurso : getRecursos()) {
-            System.out.println("Recursos disponibles: " + recurso);
+            System.out.println("Recurso: " + recurso);
         }
     }
-}
+
+    public static void showRecursosDisponibles() {
+        for (Recursos recurso : getRecursos()) {
+            if (recurso.isDisponible()) {
+                System.out.println("Recursos disponibles: " + recurso);
+            }
+        }
+    }
+    }

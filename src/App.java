@@ -7,16 +7,21 @@ public class App {
     public static void main(String[] args) throws Exception {
         boolean salir = false;
         Scanner scan = new Scanner(System.in);
-        RegistroEmergencias registro = new RegistroEmergencias(); // Instancia única de RegistroEmergencias
+        RegistroEmergencias registro = new RegistroEmergencias(); 
        
 
         do {
             System.out.println("*-*-*-*-*-*-*--*-*--*-*-*-*--*-*-*-*-*-*-*");
-            System.out.println("Sistema de Gestion de Emergencias Urbanas");
+            System.out.println(" ¡Bienvenido al Sistema de Gestión de Emergencias Urbanas! ");
             System.out.println("*-*-*-*-*-*-*--*-*--*-*-*-*--*-*-*-*-*-*-*");
+            System.out.println("===============================================");
+            System.out.println("Aquí podrás registrar, visualizar y atender emergencias");
+            System.out.println("de forma rápida y organizada.");
+            System.out.println("Asegúrate de tener todos los recursos listos.");
+            System.out.println("===============================================");
             System.out.println("Menú Principal:");
             System.out.println("1. Registrar Emergencia");
-            System.out.println("2. Consultar Emergencias");
+            System.out.println("2. Gestión de Emergencias");
             System.out.println("3. Atender Emergencias");
             System.out.println("4. Recursos");
             System.out.println("0. Terminar Jornada");
@@ -32,7 +37,7 @@ public class App {
                     break;
 
                 case 2:
-                    registro.showEmergencias();  
+                    registro.gestionEmergencias();  
                     break;
 
                 case 3:
