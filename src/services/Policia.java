@@ -1,7 +1,6 @@
 package services;
 import interfaces.Responder;
 import dependencias.*;
-import enums.NivelGravedad;
 
 public class Policia extends Recursos implements Responder{
 
@@ -12,19 +11,6 @@ public class Policia extends Recursos implements Responder{
         this.patrullas = patrullas;
     }
 
-  
-    
-    @Override
-    public void atenderEmergencia() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atenderEmergencia'");
-    }
-
-    @Override
-    public void evaluarEstado() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'evaluarEstado'");
-    }
 
     @Override
     public String getTipo() {
@@ -48,6 +34,21 @@ public class Policia extends Recursos implements Responder{
     @Override
     public String toString() {
         return "Policia: "+ super.toString() +" ,patrullas= " + patrullas;
+    }
+
+
+    @Override
+    public void atenderEmergencia(Emergencia emergencia) {
+        this.setDisponible(false);
+        System.out.println("Policía " + getId() + " se dirige a atender la emergencia: " + emergencia.getTipo()
+                + " en " + emergencia.getUbicacion());
+    }
+
+
+    @Override
+    public void notificar(Emergencia emergencia) {
+        System.out.println("Notificación: Policía " + getId() + " ha sido asignada para una emergencia de tipo "
+                + emergencia.getTipo() + " en " + emergencia.getUbicacion());
     }
 
  

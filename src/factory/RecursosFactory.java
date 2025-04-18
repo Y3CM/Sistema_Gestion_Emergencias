@@ -34,6 +34,7 @@ public class RecursosFactory {
             if (recurso.getTipo().equals(tipo) && recurso.isDisponible()) {
                 return recurso;
             }
+            
         }
         throw new IllegalStateException("No hay recursos disponibles del tipo: " + tipo);
     }
@@ -54,6 +55,8 @@ public class RecursosFactory {
             if (recurso.isDisponible()) {
                 System.out.println("Recursos disponibles: " + recurso);
             }
-        }
+        }   
     }
+
+    
     }

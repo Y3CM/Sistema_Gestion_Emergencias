@@ -1,6 +1,6 @@
 package dependencias;
 
-import factory.RecursosFactory;
+
 
 public abstract class Recursos{
     private String id;
@@ -56,6 +56,18 @@ public abstract class Recursos{
              disp =  "No disponible";
         }
         return "id= " + id + ", ubicacion= " + ubicacion + ", disponible= " + disp;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
     }
 
 

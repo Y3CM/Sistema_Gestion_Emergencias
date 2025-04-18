@@ -29,6 +29,7 @@ public class App {
             switch (getOpcion(scan)) {
                 case 0:
                     System.out.println("Terminando jornada...");
+                    registro.mostrarResumen();
                     salir = true;
                     break;
 

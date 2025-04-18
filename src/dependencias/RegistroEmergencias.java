@@ -2,16 +2,20 @@ package dependencias;
 
 import enums.NivelGravedad;
 import factory.RecursosFactory;
-import dependencias.Recursos;
+import interfaces.Observer;
+import interfaces.Responder;
+import interfaces.Subject;
+import services.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class RegistroEmergencias {
+public class RegistroEmergencias implements Subject{
 
     private List<Emergencia> emergencias;
     private Scanner scan;
+    private List<Observer> observers = new ArrayList<>();
 
     public RegistroEmergencias() {
         this.emergencias = new ArrayList<>();
@@ -143,12 +147,19 @@ public class RegistroEmergencias {
                 case MEDIO -> asignarRecursos(emergencia, 1, 1, 1);
                 case ALTO -> asignarRecursos(emergencia, 2, 2, 2);
             }
+              List<Recursos> recursosCopia = new ArrayList<>(emergencia.getRecursosAsignados());
+            for (Recursos recurso : recursosCopia) {
+                if (recurso instanceof Responder responder) {
+                    responder.atenderEmergencia(emergencia);
+                }
+            }
         } catch (IllegalStateException e) {
             System.out.println("No se pudieron asignar todos los recursos: " + e.getMessage());
         }
 
         emergencia.setEstado("Atendiendo");
-        System.out.println("La emergencia esta siendo atendida recursos asignados con éxito.");
+        
+        System.out.println("ya puedes cambiar el estado de la emergencia a finalizada");
         pressEnter();
     }
 
@@ -209,7 +220,7 @@ public class RegistroEmergencias {
         System.out.println("Emergencia finalizada correctamente.");
     }
 
-    // Getters y setters por si los necesitás en el futuro
+    
     public List<Emergencia> getEmergencias() {
         return emergencias;
     }
@@ -263,5 +274,77 @@ public class RegistroEmergencias {
             }
         }
     }
+
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(Emergencia emergencia) {
+        observers.forEach(observer -> observer.update(emergencia));
+    }
+
+
+    public void registrarEmergencia(Emergencia emergencia) {
+        emergencias.add(emergencia);
+        notifyObservers(emergencia); 
+    }
+
+    public void mostrarResumen() {
+        System.out.println("\n===== RESUMEN DE LA JORNADA =====");
+        System.out.println("Total de emergencias registradas: " + emergencias.size());
+
+        long atendidas = emergencias.stream().filter(e -> e.getEstado().equalsIgnoreCase("Finalizada")).count();
+        long activas = emergencias.stream().filter(e -> !e.getEstado().equalsIgnoreCase("Finalizada")).count();
+
+        System.out.println("Emergencias finalizadas: " + atendidas);
+        System.out.println("Emergencias activas: " + activas);
+
+        System.out.println("\n--- Emergencias activas ---");
+        emergencias.stream()
+                .filter(e -> !e.getEstado().equalsIgnoreCase("Finalizada"))
+                .forEach(e -> System.out
+                        .println(e.getTipo() + " en " + e.getUbicacion() + " - Estado: " + e.getEstado()));
+
+        System.out.println("\n--- Recursos asignados por emergencia ---");
+        for (Emergencia e : emergencias) {
+            System.out.println("[" + e.getTipo() + " - " + e.getUbicacion() + " - Estado: " + e.getEstado() + "]");
+            if (e.getRecursosAsignados().isEmpty()) {
+                System.out.println("  Sin recursos asignados.");
+            } else {
+                e.getRecursosAsignados().forEach(
+                        r -> System.out.println("  - " + r.getTipo() + " (ID: " + r.getId() + ") - " + r.getStatus()));
+            }
+        }
+
+        // === Conteo total de recursos usados por tipo ===
+        System.out.println("\n--- Total de recursos utilizados ---");
+        int totalPolicias = 0, totalAmbulancias = 0, totalBomberos = 0;
+
+        for (Emergencia e : emergencias) {
+            for (Recursos r : e.getRecursosAsignados()) {
+                switch (r.getTipo().toLowerCase()) {
+                    case "policia" -> totalPolicias++;
+                    case "ambulancia" -> totalAmbulancias++;
+                    case "bomberos" -> totalBomberos++;
+                }
+            }
+        }
+
+        System.out.println("Policías utilizados: " + totalPolicias);
+        System.out.println("Ambulancias utilizadas: " + totalAmbulancias);
+        System.out.println("Bomberos utilizados: " + totalBomberos);
+
+        System.out.println("=========================================\n");
+
+    
+    } 
+    
 
 }
