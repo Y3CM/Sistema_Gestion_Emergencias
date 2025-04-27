@@ -1,27 +1,35 @@
 import java.util.Scanner;
 
+import dependencias.*;
+import factory.*;
+
 public class App {
     public static void main(String[] args) throws Exception {
         boolean salir = false;
         Scanner scan = new Scanner(System.in);
-        RegistroEmergencias registro = new RegistroEmergencias(); // Instancia única de RegistroEmergencias
+        RegistroEmergencias registro = new RegistroEmergencias(); 
+       
 
         do {
             System.out.println("*-*-*-*-*-*-*--*-*--*-*-*-*--*-*-*-*-*-*-*");
-            System.out.println("Sistema de Gestion de Emergencias Urbanas");
+            System.out.println(" ¡Bienvenido al Sistema de Gestión de Emergencias Urbanas! ");
             System.out.println("*-*-*-*-*-*-*--*-*--*-*-*-*--*-*-*-*-*-*-*");
+            System.out.println("===============================================");
+            System.out.println("Aquí podrás registrar, visualizar y atender emergencias");
+            System.out.println("de forma rápida y organizada.");
+            System.out.println("Asegúrate de tener todos los recursos listos.");
+            System.out.println("===============================================");
             System.out.println("Menú Principal:");
             System.out.println("1. Registrar Emergencia");
-            System.out.println("2. Consultar Emergencias");
+            System.out.println("2. Gestión de Emergencias");
             System.out.println("3. Atender Emergencias");
             System.out.println("4. Recursos");
             System.out.println("0. Terminar Jornada");
 
-            int opcion = scan.nextInt();
-            scan.nextLine();
-            switch (opcion) {
+            switch (getOpcion(scan)) {
                 case 0:
                     System.out.println("Terminando jornada...");
+                    registro.mostrarResumen();
                     salir = true;
                     break;
 
@@ -30,15 +38,15 @@ public class App {
                     break;
 
                 case 2:
-                    registro.showEmergencias();  
+                    registro.gestionEmergencias();  
                     break;
 
                 case 3:
-                    
+                    registro.atenderEmergencia();
                     break;
                 
                 case 4:
-                System.out.println("Opción de recursos aún no implementada.");
+                       RecursosFactory.showRecursos();
                     break;
 
                 default:
@@ -47,7 +55,19 @@ public class App {
             pressEnter(scan);
         } while (!salir);
 
-        scan.close(); // Cerramos el Scanner al terminar
+        scan.close(); 
+    }
+
+       //metodo para controlar lo que el usuario inserta
+    private static int getOpcion(Scanner scan) {
+        while (true) {
+            try {
+                System.out.print("Selecciona una opción: ");
+                return Integer.parseInt(scan.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada no válida. Por favor, introduce un número.");
+            }
+        }
     }
 
     public static void pressEnter(Scanner scan) {

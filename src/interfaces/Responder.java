@@ -1,6 +1,7 @@
 package interfaces;
+import dependencias.*;
 
 public interface Responder {
-    void atenderEmergencia();
-    void evaluarEstado();
+    void atenderEmergencia(Emergencia emergencia);
+    void notificar(Emergencia emergencia);
 }
