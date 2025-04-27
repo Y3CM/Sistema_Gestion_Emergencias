@@ -162,7 +162,7 @@ public class RegistroEmergencias implements Subject{
         System.out.println("ya puedes cambiar el estado de la emergencia a finalizada");
         pressEnter();
     }
-
+//metodo para asignar recursos desde la factory de recursos
     private void asignarRecursos(Emergencia emergencia, int policias, int ambulancias, int bomberos) {
         for (int i = 0; i < policias; i++) {
             Recursos r = RecursosFactory.obtenerRecursoDisponible("Policia");
@@ -296,6 +296,7 @@ public class RegistroEmergencias implements Subject{
         notifyObservers(emergencia); 
     }
 
+    // metodo para mpostrar el resumen de las emergencias atentidas durante la jornada
     public void mostrarResumen() {
         System.out.println("\n===== RESUMEN DE LA JORNADA =====");
         System.out.println("Total de emergencias registradas: " + emergencias.size());
